@@ -1,0 +1,95 @@
+﻿@model SistemaDeControlDeNotas.Models.ModifyUserIndexModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<head>
+    <title>Modificar Usuario</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="~/css/ModificarUsuario.css">
+
+</head>
+
+<html>
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>-->
+        <a class="navbar-brand hidden-lg-up" href="#">Modificar Usuario</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand hidden-md-down" href="#">Modificar Usuario</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <!--<a class="nav-link" href="#">Volver</a>-->
+                @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
+            </li>
+        </ul>
+        <!--</div>-->
+    </nav>
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="~/img/usermodify.png" />
+                </div>
+                <form class="col-12" method="post" action="EditUser">
+                    <div class="form-group" id="nombre-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.Name, new { @class = "form-control", @placeholder = "Nombre", @Title = "Nombre" })
+                    </div>
+                    <div class="form-group" id="apellido1-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.FirstLastName, new { @class = "form-control", @placeholder = "Apellido 1", @Title = "Apellido 1" })
+                    </div>
+                    <div class="form-group" id="apellido2-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.SecondLastName, new { @class = "form-control", @placeholder = "Apellido 2", @Title = "Apellido 2" })
+                    </div>
+                    <div class="form-group" id="cedula-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.IdNumber, new { @class = "form-control", @placeholder = "Cedula", @Title = "Cedula" })
+                    </div>
+                    <div class="form-group" id="correo-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.Email, new { @class = "form-control", @placeholder = "Correo electronico", @Title = "Correo electronico" })
+                    </div>
+                    <div class="form-group" id="GrupoUsuario-group">
+                        @Html.TextBoxFor(x => x.ModifyUser.UserGroup, new { @class = "form-control", @placeholder = "Numero de grupo", @Title = "Numero de grupo" })
+                    </div>
+                    <div class="form-group" id="Perfil-group">
+                        @Html.DropDownListFor(x => x.ModifyUser.UserProfile, new SelectList(new List<SelectListItem> {
+                                                                               new SelectListItem { Value = "0" , Text = "Seleccione un perfil" },
+                                                                               new SelectListItem { Value = "1" , Text = "Profesor" },
+                                                                               new SelectListItem { Value = "2" , Text = "Estudiante" }
+                                                                                            }, "Value", "Text", Model.ModifyUser.UserProfile), new { @class = "form-control", @placeholder = "Seleccione un perfil", @Title = "" })
+                    </div>
+                    <div class="form-group" id="IdUsuario-group">
+                        @*@Html.PasswordFor(x => x.NewUserModel.Password, new { @class = "form-control", @placeholder = "Contraseña", @Title = "Ingrese una contraseña" })*@
+                        @Html.TextBoxFor(x => x.ModifyUser.Password, new { @class = "form-control", @placeholder = "Contraseña", @Title = "Contraseña", @type = "password" })
+                        @Html.HiddenFor(x => x.ModifyUser.UserId, new { @name = "Email" })
+                        @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
+                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
+                        @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
+                    </div>
+                    <button type="submit" class="btn btn-primary">  Modificar </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+

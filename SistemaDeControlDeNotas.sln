@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeControlDeNotas", "SistemaDeControlDeNotas\SistemaDeControlDeNotas.csproj", "{9027BC00-76FE-4F38-A18A-9B3130D2A495}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9027BC00-76FE-4F38-A18A-9B3130D2A495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9027BC00-76FE-4F38-A18A-9B3130D2A495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9027BC00-76FE-4F38-A18A-9B3130D2A495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9027BC00-76FE-4F38-A18A-9B3130D2A495}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A503A0C6-2CEC-4811-BDE7-544F7B40792C}
+	EndGlobalSection
+EndGlobal
