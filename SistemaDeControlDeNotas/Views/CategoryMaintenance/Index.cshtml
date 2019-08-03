@@ -13,7 +13,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <!-- Estilos en Css -->
-    <link rel="stylesheet" type="text/css" href="~/css/ManUsuarios.css">
+    <link rel="stylesheet" type="text/css" href="~/css/ManCategorias.css">
 
 </head>
 <body>
@@ -21,11 +21,11 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand hidden-lg-up" href="#">Mantenimiento de Usuarios</a>
+        <a class="navbar-brand hidden-lg-up" href="#">Mantenimiento de Categorias</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <a class="navbar-brand hidden-md-down" href="#">Mantenimiento de Usuarios</a>
+            <a class="navbar-brand hidden-md-down" href="#">Mantenimiento de Categorias</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <!--<a class="nav-link" href="#">Volver</a> -->
@@ -40,20 +40,13 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="~/img/usermantenimiento.png" />
+                    <img src="~/img/MantenimientoCategorias.png" />
                 </div>
                 <form class="col-12" method="get">
 
-
-                    <button type="submit" class="btn btn-primary">@Html.ActionLink("  Modificar ", "SelectUserToModify", Model, new { @class = "btn btn-primary" })</button>
-
-
-                    @if (Model.UserProfile == 1)
-                    {
-                        <button type="submit" class="btn btn-primary">@Html.ActionLink("  Agregar ", "NewUser", Model, new { @class = "btn btn-primary" })</button>
-
-                        <button type="submit" class="btn btn-primary">@Html.ActionLink("  Eliminar ", "SelectUserToDelete", Model, new { @class = "btn btn-primary" })</button>
-                    }
+                    <button type="submit" class="btn btn-primary">@Html.ActionLink("  Agregar ", "AddCategory", Model, new { @class = "btn btn-primary" })</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Modificar </button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Eliminar </button>
 
                 </form>
             </div>

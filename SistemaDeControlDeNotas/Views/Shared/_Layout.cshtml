@@ -33,22 +33,26 @@
                     <!-- <a class="nav-link" href="#">Mantenimiento Usuarios</a>-->
                     @Html.ActionLink("Mantenimiento Usuarios", "Index", "UserMaintenance", Model, new { @class = "nav-link" })
                 </li>
+                @if (Model.UserProfile == 1)
+                {
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mantenimiento Categorias</a>
+                    <!-- <a class="nav-link" href="#">Mantenimiento Categorias</a>-->
+                    @Html.ActionLink("Mantenimiento Categorias", "Index", "CategoryMaintenance", Model, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Calificaciones</a>
-                </li>
-            </ul>
-            <!--<a class="navbar-brand hidden-md-down" href="#">Principal</a>-->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <!-- <a class="nav-link" href="#">Salir</a> -->
-                    @Html.ActionLink("Salir", "Login", "Login", null, new { @class = "nav-link" })
-                </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calificaciones</a>
+        </li>
+    </ul>
+    <!--<a class="navbar-brand hidden-md-down" href="#">Principal</a>-->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link" href="#">Salir</a> -->
+                            @Html.ActionLink("Salir", "Login", "Login", null, new { @class = "nav-link" })
+                        </li>
 
-            </ul>
-        </div>
+                    </ul>
+</div>
     </nav>
 
     <div>
