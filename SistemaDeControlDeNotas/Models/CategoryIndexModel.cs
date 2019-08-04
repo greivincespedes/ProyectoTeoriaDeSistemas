@@ -9,5 +9,6 @@ namespace SistemaDeControlDeNotas.Models
     {
         public MemberUserModel CurrentUser { get; set; }
         public CategoryModel Category { get; set; }
+        public String OperationResult { get; set; }
     }
 }

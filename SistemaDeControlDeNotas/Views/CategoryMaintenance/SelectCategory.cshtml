@@ -1,4 +1,4 @@
-﻿@model SistemaDeControlDeNotas.Models.UserIndexModel
+﻿@model SistemaDeControlDeNotas.Models.ModifyCategoryIndexModel
 @{
     Layout = null;
 }
@@ -38,11 +38,14 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <!--<a class="nav-link" href="#">Volver</a>-->
-                @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
+                @Html.ActionLink("Volver", "Index", Model.CurrentUser, new { @class = "nav-link" })
             </li>
         </ul>
         <!--</div>-->
     </nav>
+
+
+
 
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
@@ -52,11 +55,21 @@
                 </div>
                 <div class="dropdown mb-3">
 
-                    <form class="col-12" action="ListUser" method="post">
-                        @Html.Label(Model.OperationResult.ToString(), new { @class = "form-control" })
+                    <form class="col-12" @Html.Raw(ViewBag.HtmlStr) method="get">
+                        @Html.DropDownListFor(x => x.ModifyCategory.CategoryID, new SelectList(Model.CategoriesList.Categories, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Perfil", @id = "dropdownMenuBoton" })
                         @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
-                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "UserProfile" })
+                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
                         @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
+
+                        @if (Model.CategoriesList.Categories.Values.Contains("No hay Categorias disponibles"))
+	                    {
+                            <button disabled="disabled" type="submit" class="btn btn-primary">  Seleccionar </button>
+	                    } else
+	                    {
+                            <button type="submit" class="btn btn-primary">  Seleccionar </button>
+	                    }   
+
+                        
                     </form>
 
                 </div>

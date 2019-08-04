@@ -36,11 +36,7 @@ namespace SistemaDeControlDeNotas.Helpers
 
             if (dbModel.sMsjError != string.Empty)
             {
-                //Role = new Dictionary<int, string>();
-
                 Users.Add(0, "No hay usuarios disponibles");
-
-
             }
             else
             {

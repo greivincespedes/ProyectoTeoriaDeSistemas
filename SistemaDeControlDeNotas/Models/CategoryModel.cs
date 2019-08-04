@@ -8,6 +8,8 @@ namespace SistemaDeControlDeNotas.Models
 {
     public class CategoryModel
     {
+        public int CategoryID { get; set; }
+
         [Required(ErrorMessage = "Por favor ingrese un nombre")]
         public String Name { get; set; }
 
@@ -15,6 +17,7 @@ namespace SistemaDeControlDeNotas.Models
         public String Description { get; set; }
 
         [Required(ErrorMessage = "Por favor seleccione un estado")]
+        [Range(1, 2, ErrorMessage = "Por favor seleccione un estado")]
         public byte State { get; set; }
     }
 }

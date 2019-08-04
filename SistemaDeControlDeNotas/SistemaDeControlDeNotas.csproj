@@ -158,11 +158,13 @@
     </Compile>
     <Compile Include="Helpers\DatabaseHelpers.cs" />
     <Compile Include="Helpers\EncryptionHelpers.cs" />
+    <Compile Include="Helpers\SelectCategoryHelpers.cs" />
     <Compile Include="Helpers\SelectUserHelpers.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
     <Compile Include="Models\MemberUserModel.cs" />
+    <Compile Include="Models\ModifyCategoryIndexModel.cs" />
     <Compile Include="Models\ModifyUserIndexModel.cs" />
     <Compile Include="Models\NewUserModel.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
@@ -194,6 +196,9 @@
     <Content Include="Views\UserMaintenance\DeleteUser.cshtml" />
     <Content Include="Views\CategoryMaintenance\Index.cshtml" />
     <Content Include="Views\CategoryMaintenance\AddCategory.cshtml" />
+    <Content Include="Views\CategoryMaintenance\OperationResult.cshtml" />
+    <Content Include="Views\CategoryMaintenance\SelectCategory.cshtml" />
+    <Content Include="Views\CategoryMaintenance\ModifyCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
