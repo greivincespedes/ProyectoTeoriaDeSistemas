@@ -1,12 +1,13 @@
-﻿@model SistemaDeControlDeNotas.Models.CategoryIndexModel
+﻿@model SistemaDeControlDeNotas.Models.ModifyCategoryIndexModel
 @{
-     Layout = null;
+    Layout = null;
 }
+
 
 <!DOCTYPE html>
 
 <head>
-    <title>Resultado</title>
+    <title>Eliminar Categoria</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,7 +21,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!--css-->
-    <link rel="stylesheet" type="text/css" href="~/css/ModificarUsuario.css">
+    <link rel="stylesheet" type="text/css" href="~/css/EliminarCategoria.css">
 
 </head>
 
@@ -30,38 +31,42 @@
         <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>-->
-        <a class="navbar-brand hidden-lg-up" href="#">Modificar Usuario</a>
+        <a class="navbar-brand hidden-lg-up" href="#">Eliminar Categoria</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand hidden-md-down" href="#">Modificar Usuario</a>
+            <a class="navbar-brand hidden-md-down" href="#">Eliminar Categoria</a>
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <!--<a class="nav-link" href="#">Volver</a>-->
                 @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
             </li>
         </ul>
         <!--</div>-->
     </nav>
 
+
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="~/img/usermodify.png" />
+                    <img src="~/img/EliminarCategoria.png" />
                 </div>
-                <div class="dropdown mb-3">
 
-                    <form class="col-12" action="ListUser" method="post">
-                        @Html.Label(Model.OperationResult.ToString(), new { @class = "form-control" })
-                        @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
-                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "UserProfile" })
-                        @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
-                    </form>
+                <form class="col-12" action="RemoveCategory" method="post">
+                    @Html.HiddenFor(x => x.ModifyCategory.CategoryID)
+                    <div class="form-group" id="nombre-group">
+                        @Html.TextBoxFor(x => x.ModifyCategory.Name, new { @class = "form-control", @placeholder = "Nombre", @name = "Nombre", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group" id="apellido1-group">
+                        @Html.TextBoxFor(x => x.ModifyCategory.Description, new { @class = "form-control", @placeholder = "Descripcion", @name = "Descripcion", @disabled = "disabled" })
+                    </div>
+                    @Html.HiddenFor(x => x.CurrentUser.Email)
+                    @Html.HiddenFor(x => x.CurrentUser.Password)
+                    @Html.HiddenFor(x => x.CurrentUser.UserProfile)
+                    <button type="submit" class="btn btn-primary">  Eliminar </button>
+                </form>
 
-                </div>
             </div>
-
         </div>
     </div>
 </body>

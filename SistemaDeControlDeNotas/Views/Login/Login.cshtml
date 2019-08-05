@@ -33,7 +33,7 @@
                 <div class="col-12 user-img">
                     <img src="~/img/user.png" />
                 </div>
-                @Html.ValidationSummary("", new { @color = "#cb202a" })
+                @Html.ValidationSummary()
                 <form name="loginForm" class="col-12" action="Login" method="post">
                     <div class="form-group" id="user-group">
                         @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Nombre de usuario" })

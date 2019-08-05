@@ -144,5 +144,168 @@ namespace SistemaDeControlDeNotas.Controllers
                 return View(modifyCategoryIndexModel);
             }
         }
+
+        [HttpPost]
+        public ActionResult EditCategory(ModifyCategoryIndexModel modifyCategoryIndexModel)
+        {
+            if (ModelState.IsValid)
+            {
+                #region Local variables
+
+                string sNombreTabla, sNombreSP, sMsjError = string.Empty;
+
+                DatabaseModel dbModel = new DatabaseModel();
+                DatabaseHelpers dbViewModel = new DatabaseHelpers();
+
+                #endregion
+
+                dbViewModel.GenerarDataTableParametros(ref dbModel);
+
+                DataRow dr1 = dbModel.dtParametros.NewRow();
+                dr1["Nombre"] = "@categoryID";
+                dr1["TipoDato"] = "9";
+                dr1["Valor"] = modifyCategoryIndexModel.ModifyCategory.CategoryID;
+
+                DataRow dr2 = dbModel.dtParametros.NewRow();
+                dr2["Nombre"] = "@categoryName";
+                dr2["TipoDato"] = "4";
+                dr2["Valor"] = modifyCategoryIndexModel.ModifyCategory.Name;
+
+                DataRow dr3 = dbModel.dtParametros.NewRow();
+                dr3["Nombre"] = "@categoryDescription";
+                dr3["TipoDato"] = "4";
+                dr3["Valor"] = modifyCategoryIndexModel.ModifyCategory.Description;
+
+                dbModel.dtParametros.Rows.Add(dr1);
+                dbModel.dtParametros.Rows.Add(dr2);
+                dbModel.dtParametros.Rows.Add(dr3);
+
+                sNombreTabla = "T_CATEGORIA";
+                sNombreSP = "spModifyCategory";
+
+                dbViewModel.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+                if (dbModel.sMsjError != string.Empty)
+                {
+                    CategoryIndexModel categoryIndexModel = new CategoryIndexModel();
+                    categoryIndexModel.CurrentUser = modifyCategoryIndexModel.CurrentUser;
+
+                    categoryIndexModel.OperationResult = "Se produjo un error al modificar la categoria, por favor intentelo de nuevo mas tarde";
+                    return View("OperationResult", categoryIndexModel);
+                }
+                else
+                {
+                    CategoryIndexModel categoryIndexModel = new CategoryIndexModel();
+                    categoryIndexModel.CurrentUser = modifyCategoryIndexModel.CurrentUser;
+
+                    categoryIndexModel.OperationResult = "La categoria se ha modificado de manera exitos";
+                    return View("OperationResult", categoryIndexModel);
+                }
+            }
+            else
+            {
+                return View("ModifyCategory", modifyCategoryIndexModel);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult SelectCategoryToDelete(MemberUserModel user)
+        {
+            ModifyCategoryIndexModel modifyCategoryIndexModel = new ModifyCategoryIndexModel();
+            modifyCategoryIndexModel.CurrentUser = user;
+
+            modifyCategoryIndexModel.CategoriesList = new SelectCategoryHelpers();
+
+            ViewBag.HtmlStr = "action=\"DeleteCategory\"";
+
+            return View("SelectCategory", modifyCategoryIndexModel);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCategory(ModifyCategoryIndexModel modifyCategoryIndexModel)
+        {
+            #region Local variables
+
+            string sNombreTabla, sNombreSP;
+
+            DatabaseModel dbModel = new DatabaseModel();
+            DatabaseHelpers dbHelper = new DatabaseHelpers();
+
+            #endregion
+
+            dbHelper.GenerarDataTableParametros(ref dbModel);
+
+            DataRow dr1 = dbModel.dtParametros.NewRow();
+            dr1["Nombre"] = "@categoryID";
+            dr1["TipoDato"] = "9";
+            dr1["Valor"] = modifyCategoryIndexModel.ModifyCategory.CategoryID;
+
+            dbModel.dtParametros.Rows.Add(dr1);
+
+            sNombreTabla = "T_CATEGORIA";
+            sNombreSP = "spListCategory";
+
+            dbHelper.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+            if (dbModel.sMsjError != string.Empty)
+            {
+                modifyCategoryIndexModel.OperationResult = dbModel.sMsjError;
+
+                return View("OperationResult", modifyCategoryIndexModel);
+            }
+            else
+            {
+                modifyCategoryIndexModel.ModifyCategory.CategoryID = Convert.ToInt32(dbModel.DS.Tables[sNombreTabla].Rows[0][0].ToString());
+                modifyCategoryIndexModel.ModifyCategory.Name = dbModel.DS.Tables[sNombreTabla].Rows[0][1].ToString();
+                modifyCategoryIndexModel.ModifyCategory.Description = dbModel.DS.Tables[sNombreTabla].Rows[0][2].ToString();
+                modifyCategoryIndexModel.ModifyCategory.State = Convert.ToByte(dbModel.DS.Tables[sNombreTabla].Rows[0][3].ToString());
+
+                return View(modifyCategoryIndexModel);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RemoveCategory(ModifyCategoryIndexModel modifyCategoryIndexModel)
+        {
+            #region Local variables
+
+            string sNombreTabla, sNombreSP, sMsjError = string.Empty;
+
+            DatabaseModel dbModel = new DatabaseModel();
+            DatabaseHelpers dbViewModel = new DatabaseHelpers();
+
+            #endregion
+
+            dbViewModel.GenerarDataTableParametros(ref dbModel);
+
+            DataRow dr1 = dbModel.dtParametros.NewRow();
+            dr1["Nombre"] = "@categoryID";
+            dr1["TipoDato"] = "9";
+            dr1["Valor"] = modifyCategoryIndexModel.ModifyCategory.CategoryID;
+
+            dbModel.dtParametros.Rows.Add(dr1);
+
+            sNombreTabla = "T_CATEGORIA";
+            sNombreSP = "spDeleteCategory";
+
+            dbViewModel.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+            if (dbModel.sMsjError != string.Empty)
+            {
+                CategoryIndexModel categoryIndexModel = new CategoryIndexModel();
+                categoryIndexModel.CurrentUser = modifyCategoryIndexModel.CurrentUser;
+
+                categoryIndexModel.OperationResult = "Se produjo un error al eliminar la categoria, por favor intentelo de nuevo mas tarde";
+                return View("OperationResult", categoryIndexModel);
+            }
+            else
+            {
+                CategoryIndexModel categoryIndexModel = new CategoryIndexModel();
+                categoryIndexModel.CurrentUser = modifyCategoryIndexModel.CurrentUser;
+
+                categoryIndexModel.OperationResult = "La categoria se ha eliminado de manera exitosa";
+                return View("OperationResult", categoryIndexModel);
+            }
+        }
     }
 }

@@ -3,10 +3,8 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 
-<html>
 <head>
     <title>Modificar Categoria</title>
 
@@ -25,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="~/css/ModificarCategoria.css">
 
 </head>
+
+<html>
 <body>
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
             </li>
         </ul>
         <!--</div>-->
-</nav>
+    </nav>
 
 
 
@@ -53,19 +53,20 @@
                 <div class="col-12 user-img">
                     <img src="~/img/ModificarCategoria.png" />
                 </div>
-                <form class="col-12" method="get">
-                    <div class="form-group" id="IdUsuario-group">
-                        @Html.Label("ID de la categoria")
-                        @Html.TextBoxFor(x => x.ModifyCategory.CategoryID, new { @class = "form-control", @placeholder = "ID de la categoria", @disabled = "disabled" })
-                    </div>
+                <form class="col-12" action="EditCategory" method="post">
+                    @Html.HiddenFor(x => x.ModifyCategory.CategoryID)
+                    @Html.HiddenFor(x => x.ModifyCategory.State)
                     <div class="form-group" id="IdUsuario-group">
                         @Html.Label("Nombre de la categoria")
-                        @Html.TextBoxFor(x => x.ModifyCategory.Name, new { @class = "form-control", @placeholder = "Nombre", @name = "Nombre" })
+                        @Html.TextBoxFor(x => x.ModifyCategory.Name, new { @class = "form-control", @placeholder = "Ingrese un nombre", @name = "Nombre" })
                     </div>
                     <div class="form-group" id="nombre-group">
                         @Html.Label("Descripcion de la categoria")
-                        @Html.TextBoxFor(x => x.ModifyCategory.Description, new { @class = "form-control", @placeholder = "Descripcion", @name = "Descripcion" })
+                        @Html.TextBoxFor(x => x.ModifyCategory.Description, new { @class = "form-control", @placeholder = "Ingrese una descripcion", @name = "Descripcion" })
                     </div>
+                    @Html.HiddenFor(x => x.CurrentUser.Email)
+                    @Html.HiddenFor(x => x.CurrentUser.Password)
+                    @Html.HiddenFor(x => x.CurrentUser.UserProfile)
                     <button type="submit" class="btn btn-primary">  Modificar </button>
                 </form>
 

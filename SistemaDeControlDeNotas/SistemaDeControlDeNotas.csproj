@@ -199,6 +199,7 @@
     <Content Include="Views\CategoryMaintenance\OperationResult.cshtml" />
     <Content Include="Views\CategoryMaintenance\SelectCategory.cshtml" />
     <Content Include="Views\CategoryMaintenance\ModifyCategory.cshtml" />
+    <Content Include="Views\CategoryMaintenance\DeleteCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
