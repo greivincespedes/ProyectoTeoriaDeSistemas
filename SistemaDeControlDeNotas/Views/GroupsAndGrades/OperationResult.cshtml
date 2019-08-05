@@ -3,18 +3,15 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 
 <head>
-    <title>Nuevo Grupo</title>
+    <title>Resultado</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina -->
-
-
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <script src="~/js/bootstrap.min.js"></script>
 
@@ -23,7 +20,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!--css-->
-    <link rel="stylesheet" type="text/css" href="~/css/AgregarGrupo.css">
+    <link rel="stylesheet" type="text/css" href="~/css/ModificarUsuario.css">
 
 </head>
 
@@ -33,41 +30,38 @@
         <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>-->
-        <a class="navbar-brand hidden-lg-up" href="#">Nuevo Grupo</a>
+        <a class="navbar-brand hidden-lg-up" href="#">Modificar Usuario</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand hidden-md-down" href="#">Nuevo Grupo</a>
+            <a class="navbar-brand hidden-md-down" href="#">Modificar Usuario</a>
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <!--<a class="nav-link" href="#">Volver</a>-->
                 @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
             </li>
         </ul>
         <!--</div>-->
     </nav>
 
-
-
-
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="~/img/NuevoGrupo.png" />
+                    <img src="~/img/usermodify.png" />
                 </div>
-                <form class="col-12" action="AddGroup" method="post">
-                    <div class="form-group" id="nombre-group">
-                        @Html.Label("Nombre del Grupo")
-                        @Html.TextBoxFor(x => x.NewGroup.GroupName, new { @class = "form-control", @placeholder = "Nombre del Grupo" })
-                        @Html.ValidationMessageFor(x => x.NewGroup.GroupName)
-                    </div>
-                    @Html.HiddenFor(x => x.CurrentUser.Email)
-                    @Html.HiddenFor(x => x.CurrentUser.Password)
-                    @Html.HiddenFor(x => x.CurrentUser.UserProfile)
-                    <button type="submit" class="btn btn-primary">  Crear </button>
-                </form>
+                <div class="dropdown mb-3">
 
+                    <form class="col-12">
+                        @Html.Label(Model.OperationResult.ToString(), new { @class = "form-control" })
+                        @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
+                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "UserProfile" })
+                        @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
+                    </form>
+
+                </div>
             </div>
+
         </div>
     </div>
 </body>

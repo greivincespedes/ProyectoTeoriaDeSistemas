@@ -13,6 +13,8 @@ namespace SistemaDeControlDeNotas.Models
         [Required(ErrorMessage = "Por favor ingrese un nombre para el grupo")]
         public String GroupName { get; set; }
 
+        public int GroupCapacity { get; set; }
+
         public int GroupStatus { get; set; }
     }
 }
