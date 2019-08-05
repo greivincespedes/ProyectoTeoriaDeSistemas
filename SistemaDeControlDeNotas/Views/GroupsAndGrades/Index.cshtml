@@ -1,0 +1,63 @@
+﻿@model SistemaDeControlDeNotas.Models.MemberUserModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<head>
+    <!-- Required meta tags -->
+    <title>Mantenimiento Grupos y Trabajos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Estilos en Css -->
+    <link rel="stylesheet" type="text/css" href="~/css/ManGruposyTrabajos.css">
+
+</head>
+
+<html>
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand hidden-lg-up" href="#">Mantenimiento Grupos y Trabajos</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <a class="navbar-brand hidden-md-down" href="#">Mantenimiento Grupos y Trabajos</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Volver", "Back", Model, new { @class = "nav-link" })
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--  ************************************************************************            -->
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="~/img/ManGruposyTrabajos.png" />
+                </div>
+                <form class="col-12" method="get">
+
+                    <button type="submit" class="btn btn-primary">@Html.ActionLink("  Crear Grupo ", "AddGroup", Model, new { @class = "btn btn-primary" })</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Asignar Trabajo </button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ver Evaluaciones </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>

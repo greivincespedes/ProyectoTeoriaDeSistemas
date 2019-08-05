@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BaseModels\BaseUserModel.cs" />
     <Compile Include="Controllers\CategoryMaintenanceController.cs" />
+    <Compile Include="Controllers\GroupsAndGradesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserMaintenanceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -163,6 +164,8 @@
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
+    <Compile Include="Models\GroupIndexModel.cs" />
+    <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\MemberUserModel.cs" />
     <Compile Include="Models\ModifyCategoryIndexModel.cs" />
     <Compile Include="Models\ModifyUserIndexModel.cs" />
@@ -200,6 +203,8 @@
     <Content Include="Views\CategoryMaintenance\SelectCategory.cshtml" />
     <Content Include="Views\CategoryMaintenance\ModifyCategory.cshtml" />
     <Content Include="Views\CategoryMaintenance\DeleteCategory.cshtml" />
+    <Content Include="Views\GroupsAndGrades\Index.cshtml" />
+    <Content Include="Views\GroupsAndGrades\AddGroup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
