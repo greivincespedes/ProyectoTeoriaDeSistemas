@@ -1,0 +1,79 @@
+﻿@model SistemaDeControlDeNotas.Models.WorkIndexModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<head>
+    <title>Asignar Trabajo</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="~/css/AsignarTrabajo.css">
+
+</head>
+
+<html>
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>-->
+        <a class="navbar-brand hidden-lg-up" href="#">Asignar Trabajo</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand hidden-md-down" href="#">Asignar Trabajo</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
+            </li>
+        </ul>
+        <!--</div>-->
+    </nav>
+
+
+
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="~/img/AsignarTrabajo.png" />
+                </div>
+                <form class="col-12" action="AssignWork" method="post">
+                    <div class="dropdown mb-3">
+                        @Html.Label("Seleccione un grupo")
+                        @Html.DropDownListFor(x => x.NewWork.GroupID, new SelectList(Model.GroupsList.Groups, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
+                    </div>
+                    <div class="form-group" id="IdUsuario-group">
+                        @Html.Label("Ingrese un asunto")
+                        @Html.TextBoxFor(x => x.NewWork.Subject, new { @class = "form-control", @placeholder = "Asunto", @name = "Asunto" })
+                    </div>
+                    <div class="form-group" id="nombre-group">
+                        @Html.Label("Ingrese una descripcion")
+                        @Html.TextBoxFor(x => x.NewWork.Description, new { @class = "form-control", @placeholder = "Descripcion", @name = "Descripcion" })
+                    </div>
+                    @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
+                    @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
+                    @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
+                    <button type="submit" class="btn btn-primary">  Asignar </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

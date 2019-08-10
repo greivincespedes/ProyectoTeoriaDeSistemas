@@ -160,7 +160,10 @@
     <Compile Include="Helpers\DatabaseHelpers.cs" />
     <Compile Include="Helpers\EncryptionHelpers.cs" />
     <Compile Include="Helpers\SelectCategoryHelpers.cs" />
+    <Compile Include="Helpers\SelectGroupHelpers.cs" />
+    <Compile Include="Helpers\SelectStudentHelpers.cs" />
     <Compile Include="Helpers\SelectUserHelpers.cs" />
+    <Compile Include="Helpers\SelectWorkHelpers.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
@@ -170,7 +173,11 @@
     <Compile Include="Models\ModifyCategoryIndexModel.cs" />
     <Compile Include="Models\ModifyUserIndexModel.cs" />
     <Compile Include="Models\NewUserModel.cs" />
+    <Compile Include="Models\TaskIndexModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
+    <Compile Include="Models\WorkIndexModel.cs" />
+    <Compile Include="Models\WorkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +213,10 @@
     <Content Include="Views\GroupsAndGrades\Index.cshtml" />
     <Content Include="Views\GroupsAndGrades\AddGroup.cshtml" />
     <Content Include="Views\GroupsAndGrades\OperationResult.cshtml" />
+    <Content Include="Views\GroupsAndGrades\AssignWork.cshtml" />
+    <Content Include="Views\GroupsAndGrades\AssignTask.cshtml" />
+    <Content Include="Views\GroupsAndGrades\SelectGroup.cshtml" />
+    <Content Include="Views\GroupsAndGrades\SelectWork.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
