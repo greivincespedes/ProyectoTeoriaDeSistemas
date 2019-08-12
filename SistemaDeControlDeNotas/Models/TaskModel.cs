@@ -10,7 +10,8 @@ namespace SistemaDeControlDeNotas.Models
     {
         public int TaskID { get; set; }
         public int WorkID { get; set; }
-        public int GroupID { get; set; }
+        public int GroupID { get; set; }    
+        public int StudentID { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese un titulo")]
         public String Subject { get; set; }

@@ -31,7 +31,7 @@ namespace SistemaDeControlDeNotas.Helpers
             dbHelper.GenerarDataTableParametros(ref dbModel);
 
             DataRow dr1 = dbModel.dtParametros.NewRow();
-            dr1["Nombre"] = "@group";
+            dr1["Nombre"] = "@grupo";
             dr1["TipoDato"] = "1";
             dr1["Valor"] = studentID;
 

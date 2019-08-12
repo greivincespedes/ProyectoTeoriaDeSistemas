@@ -51,6 +51,7 @@
                     <img src="~/img/usermodify.png" />
                 </div>
                 <form class="col-12" method="post" action="EditUser">
+                    @Html.ValidationSummary()
                     <div class="form-group" id="nombre-group">
                         @Html.TextBoxFor(x => x.ModifyUser.Name, new { @class = "form-control", @placeholder = "Nombre", @Title = "Nombre" })
                     </div>

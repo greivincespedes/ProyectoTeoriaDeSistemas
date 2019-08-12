@@ -56,9 +56,10 @@
 
                 <form class="col-12" @Html.Raw(ViewBag.HtmlStr) method="get">
                     <div class="dropdown mb-3">
-                        @Html.Label("Seleccione un trabajo")
-                        @Html.DropDownListFor(x => x.NewTask.WorkID, new SelectList(Model.WorksList.Works, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
+                        @Html.Label("Seleccione un estudiante")
+                        @Html.DropDownListFor(x => x.NewTask.StudentID, new SelectList(Model.StudentList.Students, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
                         @Html.HiddenFor(x => x.NewTask.GroupID)
+                        @Html.HiddenFor(x => x.NewTask.WorkID)
                         @Html.HiddenFor(x => x.CurrentUser.Email)
                         @Html.HiddenFor(x => x.CurrentUser.Password)
                         @Html.HiddenFor(x => x.CurrentUser.UserProfile)

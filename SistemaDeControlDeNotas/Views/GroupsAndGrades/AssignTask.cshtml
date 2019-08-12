@@ -58,11 +58,18 @@
                     <div class="dropdown mb-3">
                         @Html.Label("Grupo")
                         @Html.TextBoxFor(x => x.NewTask.GroupID, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.HiddenFor(x => x.NewTask.GroupID)
                     </div>
 
                     <div class="dropdown mb-3">
-                        @Html.Label("Seleccione un trabajo")
-                        @Html.DropDownListFor(x => x.NewTask.WorkID, new SelectList(Model.WorksList.Works, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
+                        @Html.Label("Trabajo")
+                        @Html.TextBoxFor(x => x.NewTask.WorkID, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.HiddenFor(x => x.NewTask.WorkID)
+                    </div>
+
+                    <div class="dropdown mb-3">
+                        @Html.Label("Seleccione un estudiante")
+                        @Html.DropDownListFor(x => x.NewTask.StudentID, new SelectList(Model.StudentList.Students, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
                     </div>
 
                     <div class="form-group" id="IdUsuario-group">

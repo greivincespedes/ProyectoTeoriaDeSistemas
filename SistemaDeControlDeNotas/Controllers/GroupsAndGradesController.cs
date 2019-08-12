@@ -179,23 +179,9 @@ namespace SistemaDeControlDeNotas.Controllers
         }
 
         [HttpGet]
-        public ActionResult SelectGroupForTask(MemberUserModel user)
-        {
-            TaskIndexModel taskIndexModel = new TaskIndexModel();
-            taskIndexModel.CurrentUser = user;
-
-            taskIndexModel.GroupsList = new SelectGroupHelpers();
-
-            ViewBag.HtmlStr = "action=\"AssignTask\"";
-
-            return View("SelectGroup", taskIndexModel);
-        }
-
-        [HttpGet]
         public ActionResult AssignTask(TaskIndexModel taskIndexModel)
         {
-            taskIndexModel.WorksList = new SelectWorkHelpers(taskIndexModel.NewTask.GroupID);
-
+            taskIndexModel.StudentList = new SelectStudentHelpers(taskIndexModel.NewTask.GroupID);
             return View(taskIndexModel);
         }
 
@@ -237,10 +223,16 @@ namespace SistemaDeControlDeNotas.Controllers
                 dr4["TipoDato"] = "9";
                 dr4["Valor"] = taskIndexModel.NewTask.TaskStatus;
 
+                DataRow dr5 = dbModel.dtParametros.NewRow();
+                dr5["Nombre"] = "@usuario";
+                dr5["TipoDato"] = "1";
+                dr5["Valor"] = taskIndexModel.NewTask.StudentID;
+
                 dbModel.dtParametros.Rows.Add(dr1);
                 dbModel.dtParametros.Rows.Add(dr2);
                 dbModel.dtParametros.Rows.Add(dr3);
                 dbModel.dtParametros.Rows.Add(dr4);
+                dbModel.dtParametros.Rows.Add(dr5);
 
                 sNombreTabla = "T_TRABAJO";
                 sNombreSP = "spCrearTarea";
@@ -275,11 +267,59 @@ namespace SistemaDeControlDeNotas.Controllers
         }
 
         [HttpGet]
-        public ActionResult SelectWork(TaskIndexModel taskIndexModel)
+        public ActionResult SelectGroupForTask(MemberUserModel user)
+        {
+            TaskIndexModel taskIndexModel = new TaskIndexModel();
+            taskIndexModel.CurrentUser = user;
+
+            taskIndexModel.GroupsList = new SelectGroupHelpers();
+
+            ViewBag.HtmlStr = "action=\"SelectWorkForTask\"";
+
+            return View("SelectGroup", taskIndexModel);
+        }
+
+        [HttpGet]
+        public ActionResult SelectWorkForTask(TaskIndexModel taskIndexModel)
         {
             taskIndexModel.WorksList = new SelectWorkHelpers(taskIndexModel.NewTask.GroupID);
 
-            return View(taskIndexModel);
+            ViewBag.HtmlStr = "action=\"AssignTask\"";
+
+            return View("SelectWork", taskIndexModel);
+        }
+
+        [HttpGet]
+        public ActionResult SelectGroupForEvaluation(MemberUserModel user)
+        {
+            TaskIndexModel taskIndexModel = new TaskIndexModel();
+            taskIndexModel.CurrentUser = user;
+
+            taskIndexModel.GroupsList = new SelectGroupHelpers();
+
+            ViewBag.HtmlStr = "action=\"SelectWorkForEvaluation\"";
+
+            return View("SelectGroup", taskIndexModel);
+        }
+
+        [HttpGet]
+        public ActionResult SelectWorkForEvaluation(TaskIndexModel taskIndexModel)
+        {
+            taskIndexModel.WorksList = new SelectWorkHelpers(taskIndexModel.NewTask.GroupID);
+
+            ViewBag.HtmlStr = "action=\"SelectStudentForEvaluation\"";
+
+            return View("SelectWork", taskIndexModel);
+        }
+
+        [HttpGet]
+        public ActionResult SelectStudentForEvaluation(TaskIndexModel taskIndexModel)
+        {
+            taskIndexModel.StudentList = new SelectStudentHelpers(taskIndexModel.NewTask.GroupID);
+
+            ViewBag.HtmlStr = "action=\"EvaluateStudent\"";
+
+            return View("SelectStudent", taskIndexModel);
         }
     }
 }

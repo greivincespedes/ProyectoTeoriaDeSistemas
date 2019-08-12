@@ -6,13 +6,12 @@ using SistemaDeControlDeNotas.Helpers;
 
 namespace SistemaDeControlDeNotas.Models
 {
-    public class TaskIndexModel
+    public class AssignmentIndexModel
     {
         public MemberUserModel CurrentUser { get; set; }
         public TaskModel NewTask { get; set; }
         public SelectGroupHelpers GroupsList { get; set; }
         public SelectWorkHelpers WorksList { get; set; }
-        public SelectStudentHelpers StudentList { get; set; }
         public String OperationResult { get; set; }
     }
 }
