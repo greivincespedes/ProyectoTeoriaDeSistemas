@@ -54,7 +54,7 @@
                     <img src="~/img/Evaluaciones2.png" />
                 </div>
 
-                <form class="col-12" method="get">
+                <form class="col-12" action="EvaluateStudent" method="post">
 
                     <div class="dropdown mb-3">
                         @Html.Label("Grupo")
@@ -151,8 +151,20 @@
                         </tbody>
                     </table>
 
-                    <button type="submit" class="btn btn-primary">Guardar Calificaciones</button>
+                    @Html.HiddenFor(x => x.CurrentUser.Email)
+                    @Html.HiddenFor(x => x.CurrentUser.Password)
+                    @Html.HiddenFor(x => x.CurrentUser.UserProfile)
 
+                    @if (Model.TasksList.Tasks.ContainsValue("No hay tareas disponibles"))
+                    {
+                        @Html.Label("Debe crear una tarea para evaluar")
+                        <button type="submit" class="btn btn-primary" disabled="disabled">Guardar Calificaciones</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">Guardar Calificaciones</button>
+                    }
+                    
                 </form>
 
             </div>

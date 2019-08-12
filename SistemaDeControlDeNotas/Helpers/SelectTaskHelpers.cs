@@ -43,11 +43,11 @@ namespace SistemaDeControlDeNotas.Helpers
 
             if (dbModel.sMsjError != string.Empty)
             {
-                Tasks.Add(0, "No hay estudiantes disponibles");
+                Tasks.Add(0, "No hay tareas disponibles");
             }
             else if (dbModel.DS.Tables[sNombreTabla].Rows.Count == 0)
             {
-                Tasks.Add(0, "No hay estudiantes disponibles");
+                Tasks.Add(0, "No hay tareas disponibles");
             }
             else
             {

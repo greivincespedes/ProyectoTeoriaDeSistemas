@@ -145,6 +145,7 @@ namespace SistemaDeControlDeNotas.Controllers
             }
             else
             {
+                userIndexModel.NewUser.GroupsList = new SelectGroupHelpers();
                 return View(userIndexModel);
             }
         }

@@ -19,7 +19,7 @@ namespace SistemaDeControlDeNotas.Helpers
         {
             try
             {
-                dbModel.sCadenaCNX = "SERVER = localhost; database=DB_CONTROL_EVALUACIONES; integrated security=SSPI";
+                dbModel.sCadenaCNX = "SERVER = localhost; database=DB_CONTROL_EVALUACIONES;  USER ID = sa; PASSWORD = N3xx0n";
                 dbModel.CNX = new SqlConnection(dbModel.sCadenaCNX);
 
                 dbModel.bBanderaError = false;

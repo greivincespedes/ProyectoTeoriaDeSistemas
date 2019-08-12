@@ -19,5 +19,8 @@ namespace SistemaDeControlDeNotas.Models
         [Required(ErrorMessage = "Por favor ingrese una descripcion")]
         public String Description { get; set; }
         public byte TaskStatus { get; set; }
+
+        public string GroupName { get; set; }
+        public string WorkSubject { get; set; }
     }
 }

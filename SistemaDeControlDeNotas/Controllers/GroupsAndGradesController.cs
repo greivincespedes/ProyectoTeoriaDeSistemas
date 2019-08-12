@@ -181,8 +181,58 @@ namespace SistemaDeControlDeNotas.Controllers
         [HttpGet]
         public ActionResult AssignTask(TaskIndexModel taskIndexModel)
         {
+            #region Local variables
+
+            string sNombreTabla, sNombreSP, sMsjError = string.Empty;
+
+            DatabaseModel dbModel = new DatabaseModel();
+            DatabaseHelpers dbHelper = new DatabaseHelpers();
+
+            #endregion
+
             taskIndexModel.StudentList = new SelectStudentHelpers(taskIndexModel.NewTask.GroupID);
-            return View(taskIndexModel);
+            
+
+            dbHelper.GenerarDataTableParametros(ref dbModel);
+
+            DataRow dr1 = dbModel.dtParametros.NewRow();
+            dr1["Nombre"] = "@grupo";
+            dr1["TipoDato"] = "9";
+            dr1["Valor"] = taskIndexModel.NewTask.GroupID;
+
+            DataRow dr2 = dbModel.dtParametros.NewRow();
+            dr2["Nombre"] = "@trabajo";
+            dr2["TipoDato"] = "1";
+            dr2["Valor"] = taskIndexModel.NewTask.WorkID;
+
+            dbModel.dtParametros.Rows.Add(dr1);
+            dbModel.dtParametros.Rows.Add(dr2);
+
+            sNombreTabla = "T_USUARIO";
+            sNombreSP = "spListarDetallesParaTarea";
+
+            dbHelper.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+            if (dbModel.sMsjError != string.Empty)
+            {
+                taskIndexModel.OperationResult = "Se produjo un error al cargar el formularion, por favor intentelo de nuevo mas tarde";
+
+                GroupIndexModel groupIndexModel = new GroupIndexModel();
+                groupIndexModel.CurrentUser = taskIndexModel.CurrentUser;
+                groupIndexModel.OperationResult = taskIndexModel.OperationResult;
+
+                return View("OperationResult", groupIndexModel);
+            }
+            else
+            {
+                for (int i = 0; i < dbModel.DS.Tables[sNombreTabla].Rows.Count; i++)
+                {
+                    taskIndexModel.NewTask.GroupName = dbModel.DS.Tables[sNombreTabla].Rows[i][0].ToString();
+                    taskIndexModel.NewTask.WorkSubject = dbModel.DS.Tables[sNombreTabla].Rows[i][1].ToString();
+                }
+
+                return View(taskIndexModel);
+            }
         }
 
         [HttpPost]
@@ -444,10 +494,8 @@ namespace SistemaDeControlDeNotas.Controllers
 
             DataRow dr7 = dbModel.dtParametros.NewRow();
             dr7["Nombre"] = "@estado";
-            dr3["TipoDato"] = "9";
+            dr7["TipoDato"] = "9";
             dr7["Valor"] = 1;
-
-            DataRow dr8 = dbModel.dtParametros.NewRow();
 
             dbModel.dtParametros.Rows.Add(dr1);
             dbModel.dtParametros.Rows.Add(dr2);

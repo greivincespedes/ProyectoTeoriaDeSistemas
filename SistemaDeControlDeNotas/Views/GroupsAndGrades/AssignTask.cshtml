@@ -57,13 +57,13 @@
                 <form class="col-12" action="CreateTask" method="post" id="taskForm" name="taskForm">
                     <div class="dropdown mb-3">
                         @Html.Label("Grupo")
-                        @Html.TextBoxFor(x => x.NewTask.GroupID, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.TextBoxFor(x => x.NewTask.GroupName, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
                         @Html.HiddenFor(x => x.NewTask.GroupID)
                     </div>
 
                     <div class="dropdown mb-3">
                         @Html.Label("Trabajo")
-                        @Html.TextBoxFor(x => x.NewTask.WorkID, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.TextBoxFor(x => x.NewTask.WorkSubject, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
                         @Html.HiddenFor(x => x.NewTask.WorkID)
                     </div>
 
