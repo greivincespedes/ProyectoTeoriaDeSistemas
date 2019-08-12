@@ -19,7 +19,8 @@ namespace SistemaDeControlDeNotas.Helpers
         {
             try
             {
-                dbModel.sCadenaCNX = "SERVER = localhost; database=DB_CONTROL_EVALUACIONES;  USER ID = sa; PASSWORD = N3xx0n";
+                dbModel.sCadenaCNX = "Server = tcp:sqlservergrevin.database.windows.net,1433; Initial Catalog = DB_CONTROL_EVALUACIONES; Persist Security Info = False; User ID = greivin; Password =Gr31v1n!!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
+                    //"SERVER = tcp:sqlservergrevin.database.windows.net,1433; database=DB_CONTROL_EVALUACIONES;  USER ID = sa; PASSWORD = N3xx0n";
                 dbModel.CNX = new SqlConnection(dbModel.sCadenaCNX);
 
                 dbModel.bBanderaError = false;
