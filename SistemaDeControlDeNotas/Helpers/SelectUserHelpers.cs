@@ -38,6 +38,10 @@ namespace SistemaDeControlDeNotas.Helpers
             {
                 Users.Add(0, "No hay usuarios disponibles");
             }
+            else if (dbModel.DS.Tables[sNombreTabla].Rows.Count == 0)
+            {
+                Users.Add(0, "No hay usuarios disponibles");
+            }
             else
             {
 

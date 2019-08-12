@@ -1,0 +1,162 @@
+﻿@model SistemaDeControlDeNotas.Models.EvaluationIndexModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<head>
+    <title>Evaluar Tarea</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="~/css/AsignarEvaluacion.css">
+
+</head>
+
+<html>
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>-->
+        <a class="navbar-brand hidden-lg-up" href="#">Evaluar Tarea</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand hidden-md-down" href="#">Evaluar Tarea</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Volver", "Back", Model.CurrentUser, new { @class = "nav-link" })
+            </li>
+        </ul>
+        <!--</div>-->
+    </nav>
+
+
+
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-12 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="~/img/Evaluaciones2.png" />
+                </div>
+
+                <form class="col-12" method="get">
+
+                    <div class="dropdown mb-3">
+                        @Html.Label("Grupo")
+                        @Html.TextBoxFor(x => x.Evaluation.GroupName, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.HiddenFor(x => x.Evaluation.GroupID)
+                    </div>
+                    <div class="dropdown mb-3">
+                        @Html.Label("Trabajo")
+                        @Html.TextBoxFor(x => x.Evaluation.WorkSubject, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.HiddenFor(x => x.Evaluation.WorkID)
+                    </div>
+                    <div class="dropdown mb-3">
+                        @Html.Label("Estudiante")
+                        @Html.TextBoxFor(x => x.Evaluation.StudentName, new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @disabled = "disabled" })
+                        @Html.HiddenFor(x => x.Evaluation.StudentID)
+                    </div>
+                    <div class="dropdown mb-3">
+                        @Html.Label("Seleccione una tarea")
+                        @Html.DropDownListFor(x => x.Evaluation.TaskID, new SelectList(Model.TasksList.Tasks, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
+                    </div>
+                    <div class="dropdown mb-3">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuBoton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Ver definicion de escalas
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuboton">
+                            <a class="dropdown-item">A+ = 25</a>
+                            <a class="dropdown-item">A = 22</a>
+                            <a class="dropdown-item">B = 15</a>
+                            <a class="dropdown-item">C = 5</a>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Categorias</th>
+                                <th scope="col">Calificacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Liderazgo</th>
+                                <td>
+                                    <div class="dropdown mb-3">
+                                        @Html.DropDownListFor(x => x.Evaluation.LeadershipScale, new List<SelectListItem> {
+                                                                               new SelectListItem { Value = "A+" , Text = "A+" },
+                                                                               new SelectListItem { Value = "A" , Text = "A" },
+                                                                               new SelectListItem { Value = "B" , Text = "B" },
+                                                                               new SelectListItem { Value = "C" , Text = "C" }
+                                                                                            }, new { @class = "form-control", @placeholder = "Perfil" })
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Puntualidad</th>
+                                <td>
+                                    <div class="dropdown mb-3">
+                                        @Html.DropDownListFor(x => x.Evaluation.PunctualityScale, new List<SelectListItem> {
+                                                                                   new SelectListItem { Value = "A+" , Text = "A+" },
+                                                                                   new SelectListItem { Value = "A" , Text = "A" },
+                                                                                   new SelectListItem { Value = "B" , Text = "B" },
+                                                                                   new SelectListItem { Value = "C" , Text = "C" }
+                                                                                                }, new { @class = "form-control", @placeholder = "Perfil" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Honestidad</th>
+                                <td>
+                                    <div class="dropdown mb-3">
+                                        @Html.DropDownListFor(x => x.Evaluation.HonestyScale, new List<SelectListItem> {
+                                                                                   new SelectListItem { Value = "A+" , Text = "A+" },
+                                                                                   new SelectListItem { Value = "A" , Text = "A" },
+                                                                                   new SelectListItem { Value = "B" , Text = "B" },
+                                                                                   new SelectListItem { Value = "C" , Text = "C" }
+                                                                                                }, new { @class = "form-control", @placeholder = "Perfil" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Actitud y Aptitud</th>
+                                <td>
+                                    <div class="dropdown mb-3">
+                                        @Html.DropDownListFor(x => x.Evaluation.AttitudeScale, new List<SelectListItem> {
+                                                                                   new SelectListItem { Value = "A+" , Text = "A+" },
+                                                                                   new SelectListItem { Value = "A" , Text = "A" },
+                                                                                   new SelectListItem { Value = "B" , Text = "B" },
+                                                                                   new SelectListItem { Value = "C" , Text = "C" }
+                                                                                                }, new { @class = "form-control", @placeholder = "Perfil" })
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button type="submit" class="btn btn-primary">Guardar Calificaciones</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

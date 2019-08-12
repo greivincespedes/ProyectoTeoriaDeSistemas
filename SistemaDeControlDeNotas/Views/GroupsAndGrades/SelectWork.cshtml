@@ -64,9 +64,17 @@
                         @Html.HiddenFor(x => x.CurrentUser.UserProfile)
                     </div>
 
-                    <button type="submit" class="btn btn-primary">  Continuar </button>
-                </form>
+                    @if (Model.WorksList.Works.ContainsValue("No hay trabajos disponibles"))
+                    {
+                        @Html.Label("Debe crear un trabajo")
+                        <button type="submit" class="btn btn-primary" disabled="disabled">  Continuar </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">  Continuar </button>
+                    }
 
+                </form>
             </div>
         </div>
     </div>

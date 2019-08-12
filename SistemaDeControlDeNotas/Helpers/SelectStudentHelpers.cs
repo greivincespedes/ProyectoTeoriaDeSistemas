@@ -46,6 +46,10 @@ namespace SistemaDeControlDeNotas.Helpers
             {
                 Students.Add(0, "No hay estudiantes disponibles");
             }
+            else if (dbModel.DS.Tables[sNombreTabla].Rows.Count == 0)
+            {
+                Students.Add(0, "No hay estudiantes disponibles");
+            }
             else
             {
                 for (int i = 0; i < dbModel.DS.Tables[sNombreTabla].Rows.Count; i++)

@@ -57,42 +57,58 @@
                 </div>
                 <form class="col-12" name="newUserForm" action="NewUser" method="post">
                     <div class="form-group" id="nombre-group">
+                        @Html.Label("Nombre")
                         @Html.TextBoxFor(x => x.NewUser.Name, new { @class = "form-control", @placeholder = "Nombre" })
                     </div>
                     <div class="form-group" id="apellido1-group">
+                        @Html.Label("Primer apellido")
                         @Html.TextBoxFor(x => x.NewUser.FirstLastName, new { @class = "form-control", @placeholder = "Apellido 1" })
                         @Html.ValidationMessageFor(x => x.NewUser.FirstLastName)
                     </div>
                     <div class="form-group" id="apellido2-group">
+                        @Html.Label("Segundo apellido")
                         @Html.TextBoxFor(x => x.NewUser.SecondLastName, new { @class = "form-control", @placeholder = "Apellido 2" })
                         @Html.ValidationMessageFor(x => x.NewUser.SecondLastName)
                     </div>
                     <div class="form-group" id="cedula-group">
+                        @Html.Label("Cedula")
                         @Html.TextBoxFor(x => x.NewUser.IdNumber, new { @class = "form-control", @placeholder = "Cedula" })
                         @Html.ValidationMessageFor(x => x.NewUser.IdNumber)
                     </div>
                     <div class="form-group" id="correo-group">
+                        @Html.Label("Correo electronico")
                         @Html.TextBoxFor(x => x.NewUser.Email, new { @class = "form-control", @placeholder = "Correo electronico" })
                         @Html.ValidationMessageFor(x => x.NewUser.Email)
                     </div>
                     <div class="form-group" id="GrupoUsuario-group">
-                        @Html.TextBoxFor(x => x.NewUser.UserGroup, new { @class = "form-control", @placeholder = "Numero de grupo" })
+                        @Html.Label("Seleccione un grupo")
+                        @Html.DropDownListFor(x => x.NewUser.UserGroup, new SelectList(Model.NewUser.GroupsList.Groups, "Key", "Value"), new { @class = "form-control", @placeholder = "Grupos", @id = "dropdownMenuBoton" })
                         @Html.ValidationMessageFor(x => x.NewUser.UserGroup)
                     </div>
                     <div class="form-group" id="Perfil-group">
+                        @Html.Label("Seleccione un perfil")
                         @Html.DropDownListFor(x => x.NewUser.UserProfile, new List<SelectListItem> {
-                                                                               new SelectListItem { Value = "0" , Text = "Seleccione un perfil" },
                                                                                new SelectListItem { Value = "1" , Text = "Profesor" },
                                                                                new SelectListItem { Value = "2" , Text = "Estudiante" }
                                                                                             }, new { @class = "form-control", @placeholder = "Perfil" })
                     </div>
                     <div class="form-group" id="IdUsuario-group">
+                        @Html.Label("Contraseña")
                         @Html.PasswordFor(x => x.NewUser.Password, new { @class = "form-control", @placeholder = "Contraseña" })
                         @Html.ValidationMessageFor(x => x.NewUser.Password)
                         @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
                         @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "UserProfile" })
                     </div>
-                    <button type="submit" class="btn btn-primary">  Agregar </button>
+
+                    @if (Model.NewUser.GroupsList.Groups.ContainsValue("No hay grupos disponibles"))
+                    {
+                        @Html.Label("Debe crear un grupo antes de poder crear un usuario")
+                        <button type="submit" class="btn btn-primary" disabled="disabled">  Agregar </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">  Agregar </button>
+                    }
                 </form>
 
             </div>

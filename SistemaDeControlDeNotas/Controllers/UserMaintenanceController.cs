@@ -27,7 +27,9 @@ namespace SistemaDeControlDeNotas.Controllers
         public ActionResult NewUser(MemberUserModel user)
         {
             UserIndexModel userIndexModel = new UserIndexModel();
+            userIndexModel.NewUser = new NewUserModel();
             userIndexModel.CurrentUser = user;
+            userIndexModel.NewUser.GroupsList = new SelectGroupHelpers();
 
             return View(userIndexModel);
         }

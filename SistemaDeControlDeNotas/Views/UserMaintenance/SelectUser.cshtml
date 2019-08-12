@@ -56,11 +56,25 @@
                 <div class="dropdown mb-3">
 
                     <form class="col-12" @Html.Raw(ViewBag.HtmlStr) method="get">
-                        @Html.DropDownListFor(x => x.ModifyUser.UserId, new SelectList(Model.UsersList.Users, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Perfil", @id = "dropdownMenuBoton" })
-                        @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
-                        @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
-                        @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
-                        <button type="submit" class="btn btn-primary">  Seleccionar </button>
+                        <div class="form-group">
+                            @Html.DropDownListFor(x => x.ModifyUser.UserId, new SelectList(Model.UsersList.Users, "Key", "Value"), new { @class = "btn btn-primary dropdown-toggle", @placeholder = "Perfil", @id = "dropdownMenuBoton" })
+                            @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
+                            @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
+                            @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
+                        </div>
+
+                        <div class="form-group">
+                            @if (Model.UsersList.Users.ContainsValue("No hay usuarios disponibles"))
+                            {
+                                @Html.Label("Debe crear un usuario")
+                                <button type="submit" class="btn btn-primary" disabled="disabled">  Seleccionar </button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary">  Seleccionar </button>
+                            }
+                        </div>
+
                     </form>
 
                 </div>

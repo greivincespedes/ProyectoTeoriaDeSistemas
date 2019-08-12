@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using SistemaDeControlDeNotas.BaseModels;
+using SistemaDeControlDeNotas.Helpers;
 
 namespace SistemaDeControlDeNotas.Models
 {
@@ -43,5 +44,7 @@ namespace SistemaDeControlDeNotas.Models
 
         [Required]
         public int Status { get; set; }
+
+        public SelectGroupHelpers GroupsList { get; set; }
     }
 }

@@ -321,5 +321,167 @@ namespace SistemaDeControlDeNotas.Controllers
 
             return View("SelectStudent", taskIndexModel);
         }
+
+        [HttpGet]
+        public ActionResult EvaluateStudent(TaskIndexModel taskIndexModel)
+        {
+            #region Local variables
+
+            string sNombreTabla, sNombreSP, sMsjError = string.Empty;
+
+            DatabaseModel dbModel = new DatabaseModel();
+            DatabaseHelpers dbHelper = new DatabaseHelpers();
+
+            #endregion
+
+            EvaluationIndexModel evaluationIndexModel = new EvaluationIndexModel();
+
+            evaluationIndexModel.Evaluation = new EvaluationModel();
+
+            evaluationIndexModel.CurrentUser = taskIndexModel.CurrentUser;
+            evaluationIndexModel.Evaluation.GroupID = taskIndexModel.NewTask.GroupID;
+            evaluationIndexModel.Evaluation.WorkID = taskIndexModel.NewTask.WorkID;
+            evaluationIndexModel.Evaluation.StudentID = taskIndexModel.NewTask.StudentID;
+
+            dbHelper.GenerarDataTableParametros(ref dbModel);
+
+            DataRow dr1 = dbModel.dtParametros.NewRow();
+            dr1["Nombre"] = "@estudiante";
+            dr1["TipoDato"] = "10";
+            dr1["Valor"] = evaluationIndexModel.Evaluation.StudentID;
+
+            DataRow dr2 = dbModel.dtParametros.NewRow();
+            dr2["Nombre"] = "@grupo";
+            dr2["TipoDato"] = "9";
+            dr2["Valor"] = evaluationIndexModel.Evaluation.GroupID;
+
+            DataRow dr3 = dbModel.dtParametros.NewRow();
+            dr3["Nombre"] = "@trabajo";
+            dr3["TipoDato"] = "1";
+            dr3["Valor"] = evaluationIndexModel.Evaluation.WorkID;
+
+            dbModel.dtParametros.Rows.Add(dr1);
+            dbModel.dtParametros.Rows.Add(dr2);
+            dbModel.dtParametros.Rows.Add(dr3);
+
+            sNombreTabla = "T_USUARIO";
+            sNombreSP = "spListarDetallesParaEvaluacion";
+
+            dbHelper.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+            if (dbModel.sMsjError != string.Empty)
+            {
+                evaluationIndexModel.OperationResult = "Se produjo un error al cargar el formularion, por favor intentelo de nuevo mas tarde";
+
+                GroupIndexModel groupIndexModel = new GroupIndexModel();
+                groupIndexModel.CurrentUser = evaluationIndexModel.CurrentUser;
+                groupIndexModel.OperationResult = evaluationIndexModel.OperationResult;
+
+                return View("OperationResult", groupIndexModel);
+            }
+            else
+            {
+                evaluationIndexModel.OperationResult = "El trabajo se ha creado de manera exitosa";
+
+                evaluationIndexModel.TasksList = new SelectTaskHelpers(evaluationIndexModel.Evaluation.StudentID);
+
+                for (int i = 0; i < dbModel.DS.Tables[sNombreTabla].Rows.Count; i++)
+                {
+                    evaluationIndexModel.Evaluation.StudentName = dbModel.DS.Tables[sNombreTabla].Rows[i][0].ToString();
+                    evaluationIndexModel.Evaluation.GroupName = dbModel.DS.Tables[sNombreTabla].Rows[i][1].ToString();
+                    evaluationIndexModel.Evaluation.WorkSubject = dbModel.DS.Tables[sNombreTabla].Rows[i][2].ToString();
+                }
+
+                return View(evaluationIndexModel);
+            }
+
+            
+        }
+
+        [HttpPost]
+        public ActionResult EvaluateStudent(EvaluationIndexModel evaluationIndexModel)
+        {
+            #region Local variables
+
+            string sNombreTabla, sNombreSP, sMsjError = string.Empty;
+
+            DatabaseModel dbModel = new DatabaseModel();
+            DatabaseHelpers dbHelper = new DatabaseHelpers();
+
+            #endregion
+
+            dbHelper.GenerarDataTableParametros(ref dbModel);
+
+            DataRow dr1 = dbModel.dtParametros.NewRow();
+            dr1["Nombre"] = "@estudiante";
+            dr1["TipoDato"] = "10";
+            dr1["Valor"] = evaluationIndexModel.Evaluation.StudentID;
+
+            DataRow dr2 = dbModel.dtParametros.NewRow();
+            dr2["Nombre"] = "@tarea";
+            dr2["TipoDato"] = "1";
+            dr2["Valor"] = evaluationIndexModel.Evaluation.TaskID;
+
+            DataRow dr3 = dbModel.dtParametros.NewRow();
+            dr3["Nombre"] = "@escalaLiderazgo";
+            dr3["TipoDato"] = "5";
+            dr3["Valor"] = evaluationIndexModel.Evaluation.LeadershipScale;
+
+            DataRow dr4 = dbModel.dtParametros.NewRow();
+            dr4["Nombre"] = "@escalaPuntualidad";
+            dr4["TipoDato"] = "5";
+            dr4["Valor"] = evaluationIndexModel.Evaluation.PunctualityScale;
+
+            DataRow dr5 = dbModel.dtParametros.NewRow();
+            dr5["Nombre"] = "@escalaHonestidad";
+            dr5["TipoDato"] = "5";
+            dr5["Valor"] = evaluationIndexModel.Evaluation.HonestyScale;
+
+            DataRow dr6 = dbModel.dtParametros.NewRow();
+            dr6["Nombre"] = "@escalaActitud";
+            dr6["TipoDato"] = "5";
+            dr6["Valor"] = evaluationIndexModel.Evaluation.AttitudeScale;
+
+            DataRow dr7 = dbModel.dtParametros.NewRow();
+            dr7["Nombre"] = "@estado";
+            dr3["TipoDato"] = "9";
+            dr7["Valor"] = 1;
+
+            DataRow dr8 = dbModel.dtParametros.NewRow();
+
+            dbModel.dtParametros.Rows.Add(dr1);
+            dbModel.dtParametros.Rows.Add(dr2);
+            dbModel.dtParametros.Rows.Add(dr3);
+            dbModel.dtParametros.Rows.Add(dr4);
+            dbModel.dtParametros.Rows.Add(dr5);
+            dbModel.dtParametros.Rows.Add(dr6);
+            dbModel.dtParametros.Rows.Add(dr7);
+
+            sNombreTabla = "T_EVALUACION";
+            sNombreSP = "spCrearEvaluacion";
+
+            dbHelper.ExecuteFill(sNombreTabla, sNombreSP, ref dbModel);
+
+            if (dbModel.sMsjError != string.Empty)
+            {
+                evaluationIndexModel.OperationResult = "Se produjo un error al enviar la evaluacion, por favor intentelo de nuevo mas tarde";
+
+                GroupIndexModel groupIndexModel = new GroupIndexModel();
+                groupIndexModel.CurrentUser = evaluationIndexModel.CurrentUser;
+                groupIndexModel.OperationResult = evaluationIndexModel.OperationResult;
+
+                return View("OperationResult", groupIndexModel);
+            }
+            else
+            {
+                evaluationIndexModel.OperationResult = "La evaluacion se ha enviado de manera exitosa";
+
+                GroupIndexModel groupIndexModel = new GroupIndexModel();
+                groupIndexModel.CurrentUser = evaluationIndexModel.CurrentUser;
+                groupIndexModel.OperationResult = evaluationIndexModel.OperationResult;
+
+                return View("OperationResult", groupIndexModel);
+            }
+        }
     }
 }

@@ -65,6 +65,16 @@
                         @Html.HiddenFor(x => x.CurrentUser.UserProfile)
                     </div>
 
+                    @if (Model.StudentList.Students.ContainsValue("No hay estudiantes disponibles"))
+                    {
+                        @Html.Label("Debe crear un usuario como parte del grupo estudiantes")
+                        <button type="submit" class="btn btn-primary" disabled="disabled">  Continuar </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">  Continuar </button>
+                    }
+
                     <button type="submit" class="btn btn-primary">  Continuar </button>
                 </form>
 

@@ -51,7 +51,7 @@
                     <button type="submit" class="btn btn-primary">@Html.ActionLink("  Modificar ", "SelectUserToModify", Model, new { @class = "btn btn-primary" })</button>
 
 
-                    @if (Model.UserProfile == 1)
+                    @if (Model.UserProfile == 1 || Model.UserProfile == 3)
                     {
                         <button type="submit" class="btn btn-primary">@Html.ActionLink("  Agregar ", "NewUser", Model, new { @class = "btn btn-primary" })</button>
 

@@ -69,9 +69,18 @@
                     @Html.HiddenFor(x => x.CurrentUser.Email, new { @name = "Email" })
                     @Html.HiddenFor(x => x.CurrentUser.UserProfile, new { @name = "Profile" })
                     @Html.HiddenFor(x => x.CurrentUser.Password, new { @name = "Password" })
-                    <button type="submit" class="btn btn-primary">  Asignar </button>
-                </form>
 
+                    @if (Model.GroupsList.Groups.ContainsValue("No hay grupos disponibles"))
+                    {
+                        @Html.Label("Debe crear un grupo")
+                        <button type="submit" class="btn btn-primary" disabled="disabled">  Asignar </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">  Asignar </button>
+                    }
+
+                </form>
             </div>
         </div>
     </div>

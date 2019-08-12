@@ -36,7 +36,7 @@
                     <!-- <a class="nav-link" href="#">Mantenimiento Usuarios</a>-->
                     @Html.ActionLink("Mantenimiento Usuarios", "Index", "UserMaintenance", Model, new { @class = "nav-link" })
                 </li>
-                @if (Model.UserProfile == 1)
+                @if (Model.UserProfile == 1 || Model.UserProfile == 3)
                 {
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="#">Mantenimiento Categorias</a>-->

@@ -91,6 +91,7 @@
     <Content Include="css\AgregarCategoria.css" />
     <Content Include="css\AgregarGrupo.css" />
     <Content Include="css\AgregarUsuario.css" />
+    <Content Include="css\AsignarEvaluacion.css" />
     <Content Include="css\AsignarTrabajo.css" />
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
@@ -170,6 +171,7 @@
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
+    <Compile Include="Models\EvaluationIndexModel.cs" />
     <Compile Include="Models\EvaluationModel.cs" />
     <Compile Include="Models\GroupIndexModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
@@ -222,6 +224,7 @@
     <Content Include="Views\GroupsAndGrades\SelectGroup.cshtml" />
     <Content Include="Views\GroupsAndGrades\SelectWork.cshtml" />
     <Content Include="Views\GroupsAndGrades\SelectStudent.cshtml" />
+    <Content Include="Views\GroupsAndGrades\EvaluateStudent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
