@@ -18,6 +18,12 @@ namespace SistemaDeControlDeNotas.Controllers
         }
 
         [HttpGet]
+        public ActionResult Help()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Back(MemberUserModel user)
         {
             return View("~/Views/Login/Home.cshtml", user);

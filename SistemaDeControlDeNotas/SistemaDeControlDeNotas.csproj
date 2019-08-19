@@ -100,6 +100,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\EliminarCategoria.css" />
+    <Content Include="css\fontawesome-all.min.css" />
     <Content Include="css\index.css" />
     <Content Include="css\ManCategorias.css" />
     <Content Include="css\ManGruposyTrabajos.css" />
@@ -108,10 +109,14 @@
     <Content Include="css\Menu.css" />
     <Content Include="css\ModificarCategoria.css" />
     <Content Include="css\ModificarUsuario.css" />
+    <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\1.jpg" />
+    <Content Include="img\about.jpg" />
     <Content Include="img\AgregarCategoria.png" />
+    <Content Include="img\agregarUsuario.PNG" />
+    <Content Include="img\asignarTarea.PNG" />
     <Content Include="img\AsignarTrabajo.png" />
     <Content Include="img\basurero.jpg" />
     <Content Include="img\basurero2.png" />
@@ -128,6 +133,22 @@
     <Content Include="img\fondo.jpg" />
     <Content Include="img\fondo2.jpg" />
     <Content Include="img\fondoprincipal.jpg" />
+    <Content Include="img\help\about.jpg" />
+    <Content Include="img\help\agregarUsuario.PNG" />
+    <Content Include="img\help\asignarTarea.PNG" />
+    <Content Include="img\help\asignarTrabajo.PNG" />
+    <Content Include="img\help\calificarTrabajo.PNG" />
+    <Content Include="img\help\eliminarCategoria.PNG" />
+    <Content Include="img\help\eliminarUsuario.PNG" />
+    <Content Include="img\help\ingreso.PNG" />
+    <Content Include="img\help\inicio.PNG" />
+    <Content Include="img\help\mantenimientoUsuarios.PNG" />
+    <Content Include="img\help\modificarCategoria.PNG" />
+    <Content Include="img\help\modificarUsuario.PNG" />
+    <Content Include="img\help\nuevaCategoria.PNG" />
+    <Content Include="img\help\nuevoTrabajo.PNG" />
+    <Content Include="img\help\question.png" />
+    <Content Include="img\help\recordar.PNG" />
     <Content Include="img\lapiz.png" />
     <Content Include="img\llave.png" />
     <Content Include="img\ManGruposyTrabajos.png" />
@@ -199,6 +220,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -225,6 +248,8 @@
     <Content Include="Views\GroupsAndGrades\SelectWork.cshtml" />
     <Content Include="Views\GroupsAndGrades\SelectStudent.cshtml" />
     <Content Include="Views\GroupsAndGrades\EvaluateStudent.cshtml" />
+    <None Include="Properties\PublishProfiles\SistemaDeControlDeNotas20190812044054 - Web Deploy.pubxml" />
+    <Content Include="Views\UserMaintenance\Help.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
